@@ -1,0 +1,44 @@
+# Logo
+logo_image_source: /blob/chip.svg
+
+# Index Page
+index_banner_text: Small Signals
+index_banner_text_secondary: hatsu's blog about electronics, SW, and tech
+index_font_awesome_icon_css: 
+  - fa 
+  - fas
+
+# Header
+menu:
+  Home: /
+  Archives: /archives
+  Tags: /tags
+  About: /about
+
+# Post
+default_post_title: Untitled
+default_post_icon: fa-file-text-o
+
+# Archive Date Format
+archive_date_format: MMM YYYY
+archive_font_awesome_icon_css: fa-folder-open
+
+# About Widget
+about_widget_avatar_url: http://tachyons.io/img/avatar_1.jpg
+about_widget_text: "I'm hatsu. I do electronics and software stuff."
+
+# Comments.
+comments:
+  # Disqus comments
+  disqus_shortname: hatsunearu
+
+# Google Analytics Tracking ID
+google_analytics: UA-118280644-1
+
+# Social Media Platforms
+social_platforms:
+  - url: https://github.com/hatsunearu
+    fa_icon: fa-github
+
+# Footer about
+footer_about: "Created with Hexo // Anodyne theme by <a class=\"link dim white\" href=\"http://www.codeblocq.com/\">Jonathan Klughertz</a> // Icon by <a class=\"link dim white\" href=\"https://www.flaticon.com/authors/eucalyp\">Eucalyp</a>" 
