@@ -79,8 +79,9 @@ theme: anodyne
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/hatsunearu/hatsunearu.github.io
+  repo: git@github.com:hatsunearu/hatsunearu.github.io.git
   branch: master
+  message: 
 
 marked:
   gfm: true
