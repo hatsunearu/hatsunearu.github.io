@@ -26,7 +26,7 @@ to transmit images? That sounded like straight up magic to me.
 
 ![An SSTV image from the Portal ARG. This was encoded using audio.](/blob/pictures/Dinosaur2.png)
 
-This, as far as I can tell, was my first peak behind the massive curtain of 
+This, as far as I can tell, was my first peek behind the massive curtain of 
 abstractions that is electronics, with SSTV being a synecdoche. I understood
 nothing, but I did know that using a radio and being able to communicate without
 using any existing infrastructure is just cool as heck. That seeded an interest
@@ -40,13 +40,14 @@ My first "recreational" code written was a
 to an existing SSTV transmission program written for the Raspberry Pi. 
 I got myself an Amateur Extra license. I've done a few contacts with the club 
 radio, and went to interesting club events like our Field Day.
-This is all too cool, but it sparked my interest to do this one thing: build own
-ham radio with original design.
+I knew the next logical step and a really cool challenge to myself would be
+to create my own radio.
 
-My electronics skills aren't terrible, but they aren't amazing (yet!). I knew the
-radio stuff was cool ever since I started seriously learning electronics, 
-but it flew right over my head. But I think I've gained just enough knowledge
-to tackle designing my very own radio, a challenge that began with the Portal ARG.
+My electronics skills aren't terrible, but they aren't amazing (yet!) either. I knew that
+RF engineering was cool ever since I started seriously learning electronics because
+of its intricacy and difficulty, but precisely because of that, it flew right over my head. 
+But I think I've gained just enough knowledge to tackle designing my very own radio, 
+a challenge that was seeded when I took a look at the fateful SSTV pictures.
 
 I know I'm not immediately ready to design all the parts and write all the necessary
 software to crank this radio design out. There are many, many things to learn 
@@ -77,7 +78,7 @@ I'll be using LTSpice for my circuit simulations. It's free and I'm used to it.
 
 I like using Python for basically everything. I've used it for a long time and 
 I think it's pretty darn good for what I expect to do, and it's more accessible
-than lets say MATLAB. I don't have a license for MATLAB so let's hope I am not 
+than for instance MATLAB. I don't have a license for MATLAB so let's hope I am not 
 forced to use it. 
 
 As for test equipment, I have a Rigol DS1054Z scope, hacked of course to get
