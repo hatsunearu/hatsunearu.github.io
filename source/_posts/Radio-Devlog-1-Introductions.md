@@ -5,8 +5,10 @@ date: 2018-09-16 01:42:52
 tags: 
     - dsp
     - ham
-    - circuit
-    - radio
+    - electronics
+    - rf
+    - devlog
+    - radio_devlog
 icon: fa-microchip
 ---
 
