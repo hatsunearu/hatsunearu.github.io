@@ -95,12 +95,4 @@ image_caption:
 math:
   engine: 'mathjax' # or 'katex'
   mathjax:
-    src: custom_mathjax_source
-    config:
-      # MathJax config
-    cdn: https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js
-  katex:
-    css: custom_css_source
-    js: custom_js_source # not used
-    config:
-      # KaTeX config
+    src: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML'

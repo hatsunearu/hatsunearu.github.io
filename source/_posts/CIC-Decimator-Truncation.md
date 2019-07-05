@@ -38,13 +38,13 @@ The second part is the real meat of the entire paper because it can lead to larg
 
 ### The Impulse Response
 
-A function $h_j[k]$ is introduced in Equation (9b). This is the "[impulse response coefficients to the] system function from the *j*th stage up to and including the last stage". That's a mouthful. In other words, instead of the impulse response coefficient from the input to the entire CIC Decimator block to the output of the entire CIC decimator block, Hogenauer decided to split up the impulse response. 
+A function \\(h_j[k]\\) is introduced in Equation (9b). This is the "[impulse response coefficients to the] system function from the \\(j\\)th stage up to and including the last stage". That's a mouthful. In other words, instead of the impulse response coefficient from the input to the entire CIC Decimator block to the output of the entire CIC decimator block, Hogenauer decided to split up the impulse response. 
 
-The impulse response of the system from the input of the second stage (or the output of the first stage) to the output of the entire CIC Decimator block is designated as $h_1[k]$, and the impulse response from the input of the third is $h_2[k]$ and so on.
+The impulse response of the system from the input of the second stage (or the output of the first stage) to the output of the entire CIC Decimator block is designated as \\(h_1[k]\\), and the impulse response from the input of the third is \\(h_2[k]\\) and so on.
 
 Obviously, the entire system response is equivalent to an N-point moving average filter, but the partial system impulse response look quite different. The expression for the partial system impulse response looks gnarly, but you can just take it for granted.
 
-Also, just as a passing note: the domain of $k$ of $h_j[k]$ is $[0, (RM-1)N+j-1]$ for the first case of the piecewise equation and is written in Appendix I near the end.
+Also, just as a passing note: the domain of \\(k\\) of \\(h_j[k]\\) is \\([0, (RM-1)N+j-1]\\) for the first case of the piecewise equation and is written in Appendix I near the end.
 
 ### Truncation Errors
 
@@ -52,7 +52,7 @@ As mentioned earlier, the goal of the distributed truncation idea is to truncate
 
 To do this, obtaining the error you would get by truncating the last stage would be useful.
 
-Hogenauer assumes that by truncating $B_j$ bits (in the paper, at the $j$th position), you incur an error that has a probability distribution equal to the following, which is Equation (12) in the paper:
+Hogenauer assumes that by truncating \\(B_j\\) bits (in the paper, at the \\(j\\)th position), you incur an error that has a probability distribution equal to the following, which is Equation (12) in the paper:
 
 {% math %}
 
@@ -72,13 +72,13 @@ A uniform probability distribution. This also means that the variance of the err
 
 {% endmath %}
 
-This is useful for calculating the total error for the case where you do all the truncation at the end, but in the general case where you want to find out the error incurred by truncating an arbitrary amount of bits $B_j$ at the $j$th stage, you have to take into account the fact that the data with the truncation error is "carried over" with the associated impulse response through each stage.
+This is useful for calculating the total error for the case where you do all the truncation at the end, but in the general case where you want to find out the error incurred by truncating an arbitrary amount of bits \\(B_j\\) at the \\(j\\)th stage, you have to take into account the fact that the data with the truncation error is "carried over" with the associated impulse response through each stage.
 
 ### Variance Error Gain
 
-The "Variance Error Gain" is introduced, which is simply the multiplicative factor representing the increase of variance as the error from the $j$th stage propages through the subsequent stages.
+The "Variance Error Gain" is introduced, which is simply the multiplicative factor representing the increase of variance as the error from the \\(j\\)th stage propages through the subsequent stages.
 
-Recall that the subsequent stages are represented as a impulse response function $h_j[k]$. 
+Recall that the subsequent stages are represented as a impulse response function \\(h_j[k]\\). 
 
 From the definition of convolution:
 
@@ -90,7 +90,7 @@ y[0] &= x[0] h_j[0] + x[-1] h_j[1] + x[-2] h_j[2] + ...
 \end{align}
 {% endmath %}
 
-You can clearly see each sample of $x[k]$ at different points in time, which are inflicted with the same, but indepedent truncation noise are added together with a multiplicative factor equal to the impulse response coefficient. This is equivalent to adding the same truncation noise distribution, except with multiplicative factors.
+You can clearly see each sample of \\(x[k]\\) at different points in time, which are inflicted with the same, but indepedent truncation noise are added together with a multiplicative factor equal to the impulse response coefficient. This is equivalent to adding the same truncation noise distribution, except with multiplicative factors.
 
 The formula for adding variances together can be seen here, which was adopted from Wikipedia:
 
@@ -99,7 +99,7 @@ The formula for adding variances together can be seen here, which was adopted fr
 \Var [aX + bX] = ( a^2 + b^2 ) \Var [X]
 {% endmath %}
 
-This basically means that the amount of variance increase by passing through the impulse response, the Variance Error Gain, is equal to the sum of squares of the impulse response coefficients. The total variance of the noise at the output of the CIC filter from the contribution of the $j$th truncation has the Variance Error Gain can be seen in equation (16b) of the paper, reproduced here:
+This basically means that the amount of variance increase by passing through the impulse response, the Variance Error Gain, is equal to the sum of squares of the impulse response coefficients. The total variance of the noise at the \\(j\\)th output of the CIC filter from the contribution of the \\(j\\)th truncation has the Variance Error Gain can be seen in equation (16b) of the paper, reproduced here:
 
 {% math %}
 
@@ -110,8 +110,8 @@ F_j^2=\left\{
   \end{array}\right.
 
 {% endmath %}
-
-With the function $F_j^2$, we can get the variance of the noise distribution "contributed by" the $j$th truncation error source as represented by the symbol ${\sigma_{T_j}}^{2}$. The equation (16a) of the paper is reproduced here:
+ 
+With the function \\(F_j^2\\), we can get the variance of the noise distribution "contributed by" the \\(j\\)th truncation error source as represented by the symbol \\({\sigma_{T_j}}^{2}\\). The equation (16a) of the paper is reproduced here:
 
 $$
 {\sigma_{T_j}}^{2} = {\sigma_{j}}^{2} F_j^2
@@ -119,11 +119,11 @@ $$
 
 ### Final Steps
 
-Now that we have all the symbols taken care of, we can find the total noise distribution by adding all the noise contributions from each truncation. This is simply the sum of ${\sigma_{T_j}}^{2}$ across $j$, as seen in equation 19 of the paper.
+Now that we have all the symbols taken care of, we can find the total noise distribution by adding all the noise contributions from each truncation. This is simply the sum of \\({\sigma_{T_j}}^{2}\\) across \\(j\\), as seen in equation 19 of the paper.
 
 There isn't a single solution to distribute the truncation across the stages while meeting the requirements. The paper describes one way, which yields the final equation--Equation (21).
 
-The symbol $\sigma_{T_{2N+1}}$ appears out of the blue though. It represents the standard deviation of the noise you would get if you did all the truncation at the end. It is equivalent to the following:
+The symbol \\(\sigma_{T_{2N+1}}\\) appears out of the blue though. It represents the standard deviation of the noise you would get if you did all the truncation at the end. It is equivalent to the following:
 
 {%math%}
 \begin{align}
@@ -133,7 +133,7 @@ E_{\text{total}} &= 2^{\text{bits to remove}}
 \end{align}
 {%endmath%}
 
-where $E_{\text{total}}$ represents the total error one would get if all the truncation was done at the end, and the bits to remove represents the amount of bits you want removed in the end.
+where \\(E_{\text{total}}\\) represents the total error one would get if all the truncation was done at the end, and the bits to remove represents the amount of bits you want removed in the end.
 
 ## Python Implementation
 
