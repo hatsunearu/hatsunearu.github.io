@@ -165,13 +165,13 @@
 </blockquote>
 <p>The first part is interesting, but if you just want to get to the results and nod your head at the derivation (like me), it can be taken as granted.</p>
 <p>The second part is the real meat of the entire paper because it can lead to large savings in implementation area when implemented on FPGA. Because the explanation for this is interlaced between discussions about whether to round or not, it was quite difficult for me to understand initially, so I hope my explanation helps some other engineer out when they encounter the same problem.</p>
-<h3 id="The-Impulse-Response"><a href="#The-Impulse-Response" class="headerlink" title="The Impulse Response"></a>The Impulse Response</h3><p>A function $h_j[k]$ is introduced in Equation (9b). This is the “[impulse response coefficients to the] system function from the <em>j</em>th stage up to and including the last stage”. That’s a mouthful. In other words, instead of the impulse response coefficient from the input to the entire CIC Decimator block to the output of the entire CIC decimator block, Hogenauer decided to split up the impulse response. </p>
-<p>The impulse response of the system from the input of the second stage (or the output of the first stage) to the output of the entire CIC Decimator block is designated as $h_1[k]$, and the impulse response from the input of the third is $h_2[k]$ and so on.</p>
+<h3 id="The-Impulse-Response"><a href="#The-Impulse-Response" class="headerlink" title="The Impulse Response"></a>The Impulse Response</h3><p>A function \(h_j[k]\) is introduced in Equation (9b). This is the “[impulse response coefficients to the] system function from the \(j\)th stage up to and including the last stage”. That’s a mouthful. In other words, instead of the impulse response coefficient from the input to the entire CIC Decimator block to the output of the entire CIC decimator block, Hogenauer decided to split up the impulse response. </p>
+<p>The impulse response of the system from the input of the second stage (or the output of the first stage) to the output of the entire CIC Decimator block is designated as \(h_1[k]\), and the impulse response from the input of the third is \(h_2[k]\) and so on.</p>
 <p>Obviously, the entire system response is equivalent to an N-point moving average filter, but the partial system impulse response look quite different. The expression for the partial system impulse response looks gnarly, but you can just take it for granted.</p>
-<p>Also, just as a passing note: the domain of $k$ of $h_j[k]$ is $[0, (RM-1)N+j-1]$ for the first case of the piecewise equation and is written in Appendix I near the end.</p>
+<p>Also, just as a passing note: the domain of \(k\) of \(h_j[k]\) is \([0, (RM-1)N+j-1]\) for the first case of the piecewise equation and is written in Appendix I near the end.</p>
 <h3 id="Truncation-Errors"><a href="#Truncation-Errors" class="headerlink" title="Truncation Errors"></a>Truncation Errors</h3><p>As mentioned earlier, the goal of the distributed truncation idea is to truncate the bits between each stage such that the resulting error accumulation is equivalent to the error you would get by truncating at the last stage.</p>
 <p>To do this, obtaining the error you would get by truncating the last stage would be useful.</p>
-<p>Hogenauer assumes that by truncating $B_j$ bits (in the paper, at the $j$th position), you incur an error that has a probability distribution equal to the following, which is Equation (12) in the paper:</p>
+<p>Hogenauer assumes that by truncating \(B_j\) bits (in the paper, at the \(j\)th position), you incur an error that has a probability distribution equal to the following, which is Equation (12) in the paper:</p>
 <span>$$X_j=\left\{
   \begin{array}{@{}ll@{}}
     0, &amp; \text{if no truncation or rounding} \\
@@ -179,38 +179,38 @@
   \end{array}\right.$$</span><!-- Has MathJax -->
 <p>A uniform probability distribution. This also means that the variance of the error distribution is equivalent to the following, which is also Equation (13) in the paper:</p>
 <span>$$\sigma_j^2 = \frac{1} {12} E_j^2$$</span><!-- Has MathJax -->
-<p>This is useful for calculating the total error for the case where you do all the truncation at the end, but in the general case where you want to find out the error incurred by truncating an arbitrary amount of bits $B_j$ at the $j$th stage, you have to take into account the fact that the data with the truncation error is “carried over” with the associated impulse response through each stage.</p>
-<h3 id="Variance-Error-Gain"><a href="#Variance-Error-Gain" class="headerlink" title="Variance Error Gain"></a>Variance Error Gain</h3><p>The “Variance Error Gain” is introduced, which is simply the multiplicative factor representing the increase of variance as the error from the $j$th stage propages through the subsequent stages.</p>
-<p>Recall that the subsequent stages are represented as a impulse response function $h_j[k]$. </p>
+<p>This is useful for calculating the total error for the case where you do all the truncation at the end, but in the general case where you want to find out the error incurred by truncating an arbitrary amount of bits \(B_j\) at the \(j\)th stage, you have to take into account the fact that the data with the truncation error is “carried over” with the associated impulse response through each stage.</p>
+<h3 id="Variance-Error-Gain"><a href="#Variance-Error-Gain" class="headerlink" title="Variance Error Gain"></a>Variance Error Gain</h3><p>The “Variance Error Gain” is introduced, which is simply the multiplicative factor representing the increase of variance as the error from the \(j\)th stage propages through the subsequent stages.</p>
+<p>Recall that the subsequent stages are represented as a impulse response function \(h_j[k]\). </p>
 <p>From the definition of convolution:</p>
 <span>$$\begin{align}
 y[k] &amp;= x_j[k] * h_j[k]
 \\
 y[0] &amp;= x[0] h_j[0] + x[-1] h_j[1] + x[-2] h_j[2] + ... 
 \end{align}$$</span><!-- Has MathJax -->
-<p>You can clearly see each sample of $x[k]$ at different points in time, which are inflicted with the same, but indepedent truncation noise are added together with a multiplicative factor equal to the impulse response coefficient. This is equivalent to adding the same truncation noise distribution, except with multiplicative factors.</p>
+<p>You can clearly see each sample of \(x[k]\) at different points in time, which are inflicted with the same, but indepedent truncation noise are added together with a multiplicative factor equal to the impulse response coefficient. This is equivalent to adding the same truncation noise distribution, except with multiplicative factors.</p>
 <p>The formula for adding variances together can be seen here, which was adopted from Wikipedia:</p>
 <span>$$\newcommand{\Var}{\operatorname{Var}}
 \Var [aX + bX] = ( a^2 + b^2 ) \Var [X]$$</span><!-- Has MathJax -->
-<p>This basically means that the amount of variance increase by passing through the impulse response, the Variance Error Gain, is equal to the sum of squares of the impulse response coefficients. The total variance of the noise at the output of the CIC filter from the contribution of the $j$th truncation has the Variance Error Gain can be seen in equation (16b) of the paper, reproduced here:</p>
+<p>This basically means that the amount of variance increase by passing through the impulse response, the Variance Error Gain, is equal to the sum of squares of the impulse response coefficients. The total variance of the noise at the \(j\)th output of the CIC filter from the contribution of the \(j\)th truncation has the Variance Error Gain can be seen in equation (16b) of the paper, reproduced here:</p>
 <span>$$F_j^2=\left\{
   \begin{array}{@{}ll@{}}
     \sum\limits_{k} h_j[k]^2, &amp; j=1,2,...,2N \\
     1, &amp; j=2N+1
   \end{array}\right.$$</span><!-- Has MathJax -->
-<p>With the function $F_j^2$, we can get the variance of the noise distribution “contributed by” the $j$th truncation error source as represented by the symbol ${\sigma_{T_j}}^{2}$. The equation (16a) of the paper is reproduced here:</p>
+<p>With the function \(F_j^2\), we can get the variance of the noise distribution “contributed by” the \(j\)th truncation error source as represented by the symbol \({\sigma_{T_j}}^{2}\). The equation (16a) of the paper is reproduced here:</p>
 <p>$$
 {\sigma_{T_j}}^{2} = {\sigma_{j}}^{2} F_j^2
 $$</p>
-<h3 id="Final-Steps"><a href="#Final-Steps" class="headerlink" title="Final Steps"></a>Final Steps</h3><p>Now that we have all the symbols taken care of, we can find the total noise distribution by adding all the noise contributions from each truncation. This is simply the sum of ${\sigma_{T_j}}^{2}$ across $j$, as seen in equation 19 of the paper.</p>
+<h3 id="Final-Steps"><a href="#Final-Steps" class="headerlink" title="Final Steps"></a>Final Steps</h3><p>Now that we have all the symbols taken care of, we can find the total noise distribution by adding all the noise contributions from each truncation. This is simply the sum of \({\sigma_{T_j}}^{2}\) across \(j\), as seen in equation 19 of the paper.</p>
 <p>There isn’t a single solution to distribute the truncation across the stages while meeting the requirements. The paper describes one way, which yields the final equation–Equation (21).</p>
-<p>The symbol $\sigma_{T_{2N+1}}$ appears out of the blue though. It represents the standard deviation of the noise you would get if you did all the truncation at the end. It is equivalent to the following:</p>
+<p>The symbol \(\sigma_{T_{2N+1}}\) appears out of the blue though. It represents the standard deviation of the noise you would get if you did all the truncation at the end. It is equivalent to the following:</p>
 <span>$$\begin{align}
 \sigma_{T_{2N+1}} &amp;= \sqrt{\frac {1} {12}} E_{\text{total}}
 \\
 E_{\text{total}} &amp;= 2^{\text{bits to remove}}
 \end{align}$$</span><!-- Has MathJax -->
-<p>where $E_{\text{total}}$ represents the total error one would get if all the truncation was done at the end, and the bits to remove represents the amount of bits you want removed in the end.</p>
+<p>where \(E_{\text{total}}\) represents the total error one would get if all the truncation was done at the end, and the bits to remove represents the amount of bits you want removed in the end.</p>
 <h2 id="Python-Implementation"><a href="#Python-Implementation" class="headerlink" title="Python Implementation"></a>Python Implementation</h2><p>An implementation of the calculation was made using Python. The code can be accessed <a href="https://github.com/hatsunearu/astraea-tools/blob/master/cic_truncation_calc.py" target="_blank" rel="noopener">here, under my new repository <code>astraea-tools</code></a>. </p>
 
                     
