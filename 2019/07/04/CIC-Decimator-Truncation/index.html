@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="hatsu&#39;s blog about electronics, SW, and tech">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="hatsunearu">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="CIC Decimator Truncation">
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="hatsu&#39;s blog about electronics, SW, and tech">
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Small Signal">
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article">
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary">
+    
+
+    <!-- Title -->
+    
+    <title>CIC Decimator Truncation - Small Signal</title>
+
+    <!-- Tachyons Core CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/tachyons/css/tachyons.min.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-118280644-1', 'auto');
+        ga('send', 'pageview');
+
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+</head>
+
+
+<body>
+
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><!-- Main Content -->
+<!-- Banner -->
+<!-- Banner -->
+<div class="w-100 bg-1 ph5-ns ph3 text-light">
+    
+    <nav class="db dt-l w-100 mw8 center border-box pv3">
+        <a class="db dtc-l v-mid link dim w-100 w-25-l tc tl-l mb2 mb0-l white" href="/" title="Small Signal">
+            <img src="/blob/chip.svg" class="dib h3" alt="Small Signal">
+        </a>
+        <div class="db dtc-l v-mid w-100 w-75-l tc tr-l">
+            
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" 
+                    href="/" 
+                    title="Home">
+                    Home
+                </a>
+            
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" 
+                    href="/archives" 
+                    title="Archives">
+                    Archives
+                </a>
+            
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" 
+                    href="/tags" 
+                    title="Tags">
+                    Tags
+                </a>
+            
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" 
+                    href="/about" 
+                    title="About">
+                    About
+                </a>
+            
+        </div>
+    </nav>
+
+    <!-- Title -->
+    <div class="w-100 mw8 center vh-40 dt">
+        <div class="dtc v-mid white">
+            <h1 class="f1-l f2-m tc tc-m tl-ns">CIC Decimator Truncation</h1>
+            <p class="f4 fw3 pab-100px tc tc-m tl-ns">2019-07-04</p>
+        </div>
+    </div>
+
+    <!-- Icon -->
+    <div class="relative w-100 mw8 center white dn dn-m db-ns">
+        <i class="header-icon fa fa-microchip"></i>
+    </div>
+</div>
+
+<!-- Content -->
+<div class="w-100 ph2 ph4-m ph5-l mv5 mv6-l">
+    <div class="content">
+        <div class="mw8 center">
+            <div class="cf">
+                <div class="fl w-100 w-70-l mw7 left fw3 lh-copy pr4-ns pr0-m post-content">
+                    <!-- Tags Vertical -->
+                    
+                        <div class="tags-container-vertical">
+                            <div class="tags-sub-container">
+                                <a class="fw3 ph1 dib" href="/tags/dsp/">#dsp</a> <a class="fw3 ph1 dib" href="/tags/radio/">#radio</a> <a class="fw3 ph1 dib" href="/tags/theory/">#theory</a> <a class="fw3 ph1 dib" href="/tags/electronics/">#electronics</a>
+                            </div>
+                        </div>
+                    
+
+                    <!-- Main Post Content -->
+                    <p>First post in a long time. I’ve been designing the SDR (now named Astraea) and a CIC Decimator is chosen to be used in my design. This article explains some insights on optimal truncation in a CIC Decimator. A Python based calculator software is also provided.</p>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>I’ll skip over the in depth explanation on what a CIC Decimator is. I plan to cover this eventually. Basically a CIC Decimator is a cheap way to reduce the sampling rate of a signal, without the use of any multiplication–it just uses addition and subtraction. This makes it exceptionally useful in performing direct downconversion. Without getting into too much detail, the CIC filter is built with a series of “Integrator” stages and “Comb” stages.</p>
+<p>The full explanation of the CIC filter can be obtained by reading <a href="https://www.researchgate.net/publication/3176890_An_economical_class_of_digital_filters_for_decimation_and_interpolation" target="_blank" rel="noopener">“An Economical Class of Digital Filters for Decimation and Interpolation” by E. Hogenauer</a>. </p>
+<p>One problem with the CIC technique is that the input grows in size tremendously. For instance, if 16 bits go in, 28 bits may pop out of the filter. Obviously the filter doesn’t actually add any new data, and the extra 12 bits can be safely discarded. Doing this will yield okay results, but it has a disadvantage in that it carries the baggage of unnecessary precision all the way until the end. Instead of doing the decimation at the final step, the decimation can fit between each stage of the filter, reducing the bit width of each of the filter stages. </p>
+<p>This is explained in the Hogenauer literature, and it is explained a bit in detail online. There’s a MATLAB calculator for this floating around in the web. I don’t have MATLAB, and I don’t intend to get MATLAB anytime soon, so I made some code that does the same thing in Python.</p>
+<h2 id="CIC-Bit-Truncation-in-Simple-Words"><a href="#CIC-Bit-Truncation-in-Simple-Words" class="headerlink" title="CIC Bit Truncation in Simple Words"></a>CIC Bit Truncation in Simple Words</h2><p>A single thorough pass of the Hogenauer paper is recommended before reading this part, and I recommend that you open Section IV. B. “Register Growth” before you continue reading.</p>
+<p>The section establishes two facts:</p>
+<blockquote>
+<p>Rounding is not necessary to obtain better performance, unless it is on the first and last stage.</p>
+</blockquote>
+<blockquote>
+<p>One can optimally distribute the amount of truncation between CIC stages by making the error incurred by the distributed truncation equal to the error that would be incurred by truncating at the end.</p>
+</blockquote>
+<p>The first part is interesting, but if you just want to get to the results and nod your head at the derivation (like me), it can be taken as granted.</p>
+<p>The second part is the real meat of the entire paper because it can lead to large savings in implementation area when implemented on FPGA. Because the explanation for this is interlaced between discussions about whether to round or not, it was quite difficult for me to understand initially, so I hope my explanation helps some other engineer out when they encounter the same problem.</p>
+<h3 id="The-Impulse-Response"><a href="#The-Impulse-Response" class="headerlink" title="The Impulse Response"></a>The Impulse Response</h3><p>A function \(h_j[k]\) is introduced in Equation (9b). This is the “[impulse response coefficients to the] system function from the \(j\)th stage up to and including the last stage”. That’s a mouthful. In other words, instead of the impulse response coefficient from the input to the entire CIC Decimator block to the output of the entire CIC decimator block, Hogenauer decided to split up the impulse response. </p>
+<p>The impulse response of the system from the input of the second stage (or the output of the first stage) to the output of the entire CIC Decimator block is designated as \(h_1[k]\), and the impulse response from the input of the third is \(h_2[k]\) and so on.</p>
+<p>Obviously, the entire system response is equivalent to an N-point moving average filter, but the partial system impulse response look quite different. The expression for the partial system impulse response looks gnarly, but you can just take it for granted.</p>
+<p>Also, just as a passing note: the domain of \(k\) of \(h_j[k]\) is \([0, (RM-1)N+j-1]\) for the first case of the piecewise equation and is written in Appendix I near the end.</p>
+<h3 id="Truncation-Errors"><a href="#Truncation-Errors" class="headerlink" title="Truncation Errors"></a>Truncation Errors</h3><p>As mentioned earlier, the goal of the distributed truncation idea is to truncate the bits between each stage such that the resulting error accumulation is equivalent to the error you would get by truncating at the last stage.</p>
+<p>To do this, obtaining the error you would get by truncating the last stage would be useful.</p>
+<p>Hogenauer assumes that by truncating \(B_j\) lowest significant bits (in the paper, at the \(j\)th position), you incur an error, with respect to the input LSB, that has a probability distribution equal to the following, which is Equation (12) in the paper:</p>
+<span>$$E_j=\left\{
+  \begin{array}{@{}ll@{}}
+    0, &amp; \text{if no truncation or rounding} \\
+    {2}^{B_j}, &amp; \text{otherwise}
+  \end{array}\right.$$</span><!-- Has MathJax -->
+<p>As an example in base-10, if you had an input value of \(12345\) and you wanted to truncate 2 digits (analogous to 2 bits in binary), the output value would be \(12300\). In this case, we lost \(45\) in this process. Furthermore, for all inputs values from \(12300\) to \(12399\), it would truncate down to \(12300\). This means that the maximum error bound is \(100\), or \({10}^{D_j}\) where \({D_j}\) represents the digits we discard (in our case, 2). If the input value is uniformly distributed between those two values, we can say that the error has a uniform probability distribution of \({10}^{D_j}\).</p>
+<p>A uniform probability distribution means that the variance of the error distribution is equivalent to the following, which is also Equation (13) in the paper:</p>
+<span>$$\sigma_j^2 = \frac{1} {12} E_j^2$$</span><!-- Has MathJax -->
+<p>This is useful for calculating the total error for the case where you do all the truncation at the end, but in the general case where you want to find out the error incurred by truncating an arbitrary amount of bits \(B_j\) at the \(j\)th stage, you have to take into account the fact that the data with the truncation error is “carried over” with the associated impulse response through each stage.</p>
+<h3 id="Variance-Error-Gain"><a href="#Variance-Error-Gain" class="headerlink" title="Variance Error Gain"></a>Variance Error Gain</h3><p>The “Variance Error Gain” is introduced, which is simply the multiplicative factor representing the increase of variance as the error from the \(j\)th stage propages through the subsequent stages.</p>
+<p>Recall that the subsequent stages are represented as a impulse response function \(h_j[k]\). </p>
+<p>From the definition of convolution:</p>
+<span>$$\begin{align}
+y[k] &amp;= x_j[k] * h_j[k]
+\\
+y[0] &amp;= x[0] h_j[0] + x[-1] h_j[1] + x[-2] h_j[2] + ... 
+\end{align}$$</span><!-- Has MathJax -->
+<p>You can clearly see each sample of \(x[k]\) at different points in time, which are inflicted with the same, but indepedent truncation noise are added together with a multiplicative factor equal to the impulse response coefficient. This is equivalent to adding the same truncation noise distribution, except with multiplicative factors.</p>
+<p>The formula for adding variances together can be seen here, which was adopted from Wikipedia:</p>
+<span>$$\newcommand{\Var}{\operatorname{Var}}
+\Var [aX + bX] = ( a^2 + b^2 ) \Var [X]$$</span><!-- Has MathJax -->
+<p>This basically means that the amount of variance increase by passing through the impulse response, the Variance Error Gain, is equal to the sum of squares of the impulse response coefficients. The total variance of the noise at the \(j\)th output of the CIC filter from the contribution of the \(j\)th truncation has the Variance Error Gain can be seen in equation (16b) of the paper, reproduced here:</p>
+<span>$$F_j^2=\left\{
+  \begin{array}{@{}ll@{}}
+    \sum\limits_{k} h_j[k]^2, &amp; j=1,2,...,2N \\
+    1, &amp; j=2N+1
+  \end{array}\right.$$</span><!-- Has MathJax -->
+<p>With the function \(F_j^2\), we can get the variance of the noise distribution “contributed by” the \(j\)th truncation error source as represented by the symbol \({\sigma_{T_j}}^{2}\). The equation (16a) of the paper is reproduced here:</p>
+<p>$$
+{\sigma_{T_j}}^{2} = {\sigma_{j}}^{2} F_j^2
+$$</p>
+<h3 id="Final-Steps"><a href="#Final-Steps" class="headerlink" title="Final Steps"></a>Final Steps</h3><p>Now that we have all the symbols taken care of, we can find the total noise distribution by adding all the noise contributions from each truncation. This is simply the sum of \({\sigma_{T_j}}^{2}\) across \(j\), as seen in equation 19 of the paper.</p>
+<p>There isn’t a single solution to distribute the truncation across the stages while meeting the requirements. The paper describes one way, which yields the final equation–Equation (21).</p>
+<p>The symbol \(\sigma_{T_{2N+1}}\) appears out of the blue though. It represents the standard deviation of the noise you would get if you did all the truncation at the end. It is equivalent to the following:</p>
+<span>$$\begin{align}
+\sigma_{T_{2N+1}} &amp;= \sqrt{\frac {1} {12}} E_{\text{total}}
+\\
+E_{\text{total}} &amp;= 2^{\text{bits to remove}}
+\end{align}$$</span><!-- Has MathJax -->
+<p>where \(E_{\text{total}}\) represents the total error one would get if all the truncation was done at the end, and the bits to remove represents the amount of bits you want removed in the end.</p>
+<h2 id="Python-Implementation"><a href="#Python-Implementation" class="headerlink" title="Python Implementation"></a>Python Implementation</h2><p>An implementation of the calculation was made using Python. The code can be accessed <a href="https://github.com/hatsunearu/astraea-tools/blob/master/cic_truncation_calc.py" target="_blank" rel="noopener">here, under my new repository <code>astraea-tools</code></a>. </p>
+
+                    
+                    <!-- Tags Bottom -->
+                    
+                        <div class="tags-container-bottom">
+                            <i class="fa fa-tag pr3 text-main-color"></i><a class="fw3 ph1 dib" href="/tags/dsp/">#dsp</a> <a class="fw3 ph1 dib" href="/tags/radio/">#radio</a> <a class="fw3 ph1 dib" href="/tags/theory/">#theory</a> <a class="fw3 ph1 dib" href="/tags/electronics/">#electronics</a>
+                        </div>
+                    
+
+                    <!-- Comments -->
+                    
+<div id="disqus_thread" class="mt5">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+
+
+
+                </div>
+                <div class="fl w-100 w-30-l center fw3 lh-copy pl4-ns tl black-50">
+                    
+                    <hr class="dn-l mw4 black-50 mt5" />
+                    
+                    <!-- Widget 1: About -->
+                    <div class="mt5 mt0-l">
+    <article class="dt db-l mw8 mw8-m mw5-ns center ml0-l bg-white mv3">
+        <div class="dn dtc-m db-l v-mid tc pr4 pr0-l" style="min-width: 6rem;">
+            <img src="http://tachyons.io/img/avatar_1.jpg" class="mb4-l br-100 h3 w3 h4-l w4-l dib" title="hatsunearu">
+        </div>
+        <div class="dtc db-l v-mid lh-copy measure center f6 black-50 tj">
+            I'm hatsu. I do electronics and software stuff.
+        </div>
+    </article>
+</div>
+
+                    <hr class="dn-l mw4 black-50 mt5" />
+                    
+                    <!-- Widget 2: Categories -->
+                    
+
+                    <!-- Widget 3: Recent Posts -->
+                    <div class="mt5 tc tl-l">
+    <h3>Recent Posts</h3>
+    
+        <p>
+            <a href="/2019/07/04/CIC-Decimator-Truncation/">CIC Decimator Truncation</a>
+        </p>
+    
+        <p>
+            <a href="/2018/09/16/Moved-to-Hexo/">Moved to Hexo</a>
+        </p>
+    
+        <p>
+            <a href="/2018/09/16/Radio-Devlog-1-Introductions/">Radio Devlog #1: Introductions</a>
+        </p>
+    
+        <p>
+            <a href="/2018/04/29/rust-offline/">Installing Rust Offline</a>
+        </p>
+    
+        <p>
+            <a href="/2018/04/08/missingfundamental/">The Missing Fundamental</a>
+        </p>
+    
+</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Footer -->
+<div class="bg-1 ph2 ph5-ns pv5">
+        <div class="mv8">
+            <div class="center tc">
+                
+                    <div class="dib mh3">
+                        <a class="f3 f2-ns white dim" href="https://github.com/hatsunearu" target="_blank">
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </div>
+                
+            </div>
+            <div class="f6 f5-ns center tc white pt5 fw3">
+                Created with Hexo // Anodyne theme by <a class="link dim white" href="http://www.codeblocq.com/">Jonathan Klughertz</a> // Icon by <a class="link dim white" href="https://www.flaticon.com/authors/eucalyp">Eucalyp</a>
+            </div>
+        </div>
+    </div>
+
+<!-- After Footer -->
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'hatsunearu';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+</body>
+
+</html>
