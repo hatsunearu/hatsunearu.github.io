@@ -56,7 +56,7 @@ Hogenauer assumes that by truncating \\(B_j\\) bits (in the paper, at the \\(j\\
 
 {% math %}
 
-X_j=\left\{
+E_j=\left\{
   \begin{array}{@{}ll@{}}
     0, & \text{if no truncation or rounding} \\
     {2}^{B_j}, & \text{otherwise}
