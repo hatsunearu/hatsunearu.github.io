@@ -52,7 +52,7 @@ As mentioned earlier, the goal of the distributed truncation idea is to truncate
 
 To do this, obtaining the error you would get by truncating the last stage would be useful.
 
-Hogenauer assumes that by truncating \\(B_j\\) bits (in the paper, at the \\(j\\)th position), you incur an error that has a probability distribution equal to the following, which is Equation (12) in the paper:
+Hogenauer assumes that by truncating \\(B_j\\) lowest significant bits (in the paper, at the \\(j\\)th position), you incur an error, with respect to the input LSB, that has a probability distribution equal to the following, which is Equation (12) in the paper:
 
 {% math %}
 
@@ -64,7 +64,9 @@ E_j=\left\{
 
 {% endmath %}
 
-A uniform probability distribution. This also means that the variance of the error distribution is equivalent to the following, which is also Equation (13) in the paper:
+As an example in base-10, if you had an input value of \\(12345\\) and you wanted to truncate 2 digits (analogous to 2 bits in binary), the output value would be \\(12300\\). In this case, we lost \\(45\\) in this process. Furthermore, for all inputs values from \\(12300\\) to \\(12399\\), it would truncate down to \\(12300\\). This means that the maximum error bound is \\(100\\), or \\({10}^{D_j}\\) where \\({D_j}\\) represents the digits we discard (in our case, 2). If the input value is uniformly distributed between those two values, we can say that the error has a uniform probability distribution of \\({10}^{D_j}\\).
+
+A uniform probability distribution means that the variance of the error distribution is equivalent to the following, which is also Equation (13) in the paper:
 
 {% math %}
 
