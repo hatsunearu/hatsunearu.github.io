@@ -1,7 +1,7 @@
 ---
 title: CIC Decimator Truncation
 draft: post
-date: 2019-06-26 20:40:24
+date: 2019-07-04 00:00:00
 tags:
  - dsp
  - radio
