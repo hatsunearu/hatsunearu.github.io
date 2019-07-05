@@ -47,7 +47,7 @@
     <title>CIC Decimator Truncation - Small Signal</title>
 
     <!-- Tachyons Core CSS -->
-    <link rel="stylesheet" href="//unpkg.com/tachyons/css/tachyons.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/tachyons/css/tachyons.min.css">
 
     <!-- Custom Fonts -->
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -172,7 +172,7 @@
 <h3 id="Truncation-Errors"><a href="#Truncation-Errors" class="headerlink" title="Truncation Errors"></a>Truncation Errors</h3><p>As mentioned earlier, the goal of the distributed truncation idea is to truncate the bits between each stage such that the resulting error accumulation is equivalent to the error you would get by truncating at the last stage.</p>
 <p>To do this, obtaining the error you would get by truncating the last stage would be useful.</p>
 <p>Hogenauer assumes that by truncating \(B_j\) bits (in the paper, at the \(j\)th position), you incur an error that has a probability distribution equal to the following, which is Equation (12) in the paper:</p>
-<span>$$X_j=\left\{
+<span>$$E_j=\left\{
   \begin{array}{@{}ll@{}}
     0, &amp; \text{if no truncation or rounding} \\
     {2}^{B_j}, &amp; \text{otherwise}
