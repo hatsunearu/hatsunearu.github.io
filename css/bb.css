@@ -1,0 +1,223 @@
+div#audioplayer {
+    background-color: #fff;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 10000;
+    border:1px solid black;
+    padding: 1%;
+    margin: 1%;
+    width: 350px;
+    max-width: 98%;
+   -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+div#audioplayer audio {
+    width: 100%;
+}
+
+div#audioplayer input {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+div#audioplayer #status {
+	display: flex;
+	justify-content: space-between;
+	height: 35px;
+	white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+div#audioplayer .button {
+    color: #fff;
+    cursor: pointer;
+    height: 35px;
+    width: 100px;
+    float:left;
+    text-align: center;
+    line-height: 35px;
+    padding: 0;
+    font-size: 13px;
+}
+
+div#audioplayer #audioname {
+	width: 100%;
+	white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 35px;
+    padding-left: 5%;
+    padding-right: 5%;
+    font-size: 13px;
+}
+
+div#audioplayer #audioupload {
+    background-color: #246B61;
+}
+div#audioplayer #audiogndtruth {
+    background-color: #AA8239;
+}
+
+div#audioplayer #audiorestoremiku {
+    color: #A43741;
+    cursor: pointer;
+    display: inline-block;
+    float: right;
+    line-height: 35px;
+    text-align: center;
+    width: 20px;
+    overflow:hidden;
+    display: none;
+}
+
+.demogroup {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	box-sizing: border-box;
+	width: 310px;
+	max-width: 100%;
+	text-align:center;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	background-color: #ddd;
+	padding: 10px;
+}
+
+.demogroup button {
+	width: 300px;
+	max-width: 100%;
+	margin:auto;
+	display:block;
+    border: 3px dashed #F4989C;
+    color: #444;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+.demogroup button:focus {
+    outline:0;
+}
+
+.demogroup button + button {
+	margin-top: 5px;
+}
+
+.demogroup button:nth-of-type(1) {
+	background-color: #D6F6DD;
+}
+.demogroup button:nth-of-type(2) {
+	background-color: #DAC4F7;
+}
+.demogroup button:nth-of-type(3) {
+	background-color: #EBD2B4;
+}
+.demogroup button:nth-of-type(4) {
+	background-color: #ACECF7;
+}
+
+.demogroup button.selected {
+    border: 3px solid #F4989C;
+}
+
+img {
+  max-width: 100%;
+      display: block;
+    margin-left: auto;
+    margin-right: auto;
+  vertical-align: middle; }    
+  
+canvas {
+      max-width: 100%;
+      display: block;
+    margin-left: auto;
+    margin-right: auto;
+  vertical-align: middle; 
+}
+
+.harmonics_container {
+    display: block;
+	margin-left: auto;
+	margin-right: auto;
+	box-sizing: border-box;
+	max-width: 100%;
+	text-align:center;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	padding: 10px;
+}
+
+#harmonics_view {
+    max-width: 100%;
+}
+
+.mathjax_container {
+    overflow-x: auto;
+}
+
+.harmonic_gain_container {
+	display: flex;
+	position: relative;
+	height:50px;
+	background-color: #89AAE6;
+	width: 80%; /* Width of the outside container */
+	margin-left: 10%;
+	margin-right: 10%;
+	margin-bottom: 30px;
+}
+
+.harmonic_gain_container > .label {
+	background-color: #061826;
+	width: 10%;
+	text-align: center;
+	line-height: 50px;
+	color: #eee;
+}
+
+/* The slider itself */
+.slider {
+  overflow: auto;
+  margin: auto;
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    width: 80%; /* Full-width */
+    height: 25px; /* Specified height */
+    background: #d3d3d3; /* Grey background */
+    outline: none; /* Remove outline */
+    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+}
+
+/* Mouse-over effects */
+.slider:hover {
+    opacity: 1; /* Fully shown on mouse-over */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */ 
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: #4CAF50; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+}
+
+.slider::-moz-range-thumb {
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: #4CAF50; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+}

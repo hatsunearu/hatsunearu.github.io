@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="hatsu&#39;s blog about electronics, SW, and tech">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="hatsunearu">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Radio Devlog #1: Introductions">
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="hatsu&#39;s blog about electronics, SW, and tech">
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Small Signal">
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article">
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary">
+    
+
+    <!-- Title -->
+    
+    <title>Radio Devlog #1: Introductions - Small Signal</title>
+
+    <!-- Tachyons Core CSS -->
+    <link rel="stylesheet" href="//unpkg.com/tachyons/css/tachyons.min.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-118280644-1', 'auto');
+        ga('send', 'pageview');
+
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+</head>
+
+
+<body>
+
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><!-- Main Content -->
+<!-- Banner -->
+<!-- Banner -->
+<div class="w-100 bg-1 ph5-ns ph3 text-light">
+    
+    <nav class="db dt-l w-100 mw8 center border-box pv3">
+        <a class="db dtc-l v-mid link dim w-100 w-25-l tc tl-l mb2 mb0-l white" href="/" title="Small Signal">
+            <img src="/blob/chip.svg" class="dib h3" alt="Small Signal">
+        </a>
+        <div class="db dtc-l v-mid w-100 w-75-l tc tr-l">
+            
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" 
+                    href="/" 
+                    title="Home">
+                    Home
+                </a>
+            
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" 
+                    href="/archives" 
+                    title="Archives">
+                    Archives
+                </a>
+            
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" 
+                    href="/tags" 
+                    title="Tags">
+                    Tags
+                </a>
+            
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" 
+                    href="/about" 
+                    title="About">
+                    About
+                </a>
+            
+        </div>
+    </nav>
+
+    <!-- Title -->
+    <div class="w-100 mw8 center vh-40 dt">
+        <div class="dtc v-mid white">
+            <h1 class="f1-l f2-m tc tc-m tl-ns">Radio Devlog #1: Introductions</h1>
+            <p class="f4 fw3 pab-100px tc tc-m tl-ns">2018-09-16</p>
+        </div>
+    </div>
+
+    <!-- Icon -->
+    <div class="relative w-100 mw8 center white dn dn-m db-ns">
+        <i class="header-icon fa fa-microchip"></i>
+    </div>
+</div>
+
+<!-- Content -->
+<div class="w-100 ph2 ph4-m ph5-l mv5 mv6-l">
+    <div class="content">
+        <div class="mw8 center">
+            <div class="cf">
+                <div class="fl w-100 w-70-l mw7 left fw3 lh-copy pr4-ns pr0-m post-content">
+                    <!-- Tags Vertical -->
+                    
+                        <div class="tags-container-vertical">
+                            <div class="tags-sub-container">
+                                <a class="fw3 ph1 dib" href="/tags/dsp/">#dsp</a> <a class="fw3 ph1 dib" href="/tags/electronics/">#electronics</a> <a class="fw3 ph1 dib" href="/tags/ham/">#ham</a> <a class="fw3 ph1 dib" href="/tags/rf/">#rf</a> <a class="fw3 ph1 dib" href="/tags/devlog/">#devlog</a> <a class="fw3 ph1 dib" href="/tags/radio-devlog/">#radio_devlog</a>
+                            </div>
+                        </div>
+                    
+
+                    <!-- Main Post Content -->
+                    <h2 id="Where-I-Began"><a href="#Where-I-Began" class="headerlink" title="Where I Began"></a>Where I Began</h2><p>I think my first contact with electrical engineering might have been the Portal
+ARG. To tease the sequel to Portal, Portal 2, Valve’s software developers retrofitted 
+some neat artifacts into the original Portal game to hint what is coming up. </p>
+<p>The initial artifacts were strange “radio” transmissions within the game Portal,
+revealed by taking the bedside radio to certain locations. Take a look at a 
+<a href="https://www.youtube.com/watch?v=91LB9ssE__k" target="_blank" rel="noopener">video here</a> showing what’s going on.
+There’s some Morse code and this weird thing called SSTV–a cool ham radio tech
+that lets you send pictures at a very slow rate over radio. I’ve never seen this
+before, and it instantly captured my attention. How the heck can you use audio
+to transmit images? That sounded like straight up magic to me.</p>
+<p><img src="/blob/pictures/Dinosaur2.png" alt="An SSTV image from the Portal ARG. This was encoded using audio."><span class="image-caption">An SSTV image from the Portal ARG. This was encoded using audio.</span></p>
+<p>This, as far as I can tell, was my first peek behind the massive curtain of 
+abstractions that is electronics, with SSTV being a synecdoche. I understood
+nothing, but I did know that using a radio and being able to communicate without
+using any existing infrastructure is just cool as heck. That seeded an interest
+in electronics and technology into me, and I promised to myself that I’ll take
+a look at ham radio when I get the opportunity.</p>
+<p>Fast forward to college. The first club I joined in college was unsurprisingly 
+the ham radio club, to finally dip my feet in the hobby that started it all. 
+My first “recreational” code written was a 
+<a href="https://github.com/hatsunearu/pisstvpp" target="_blank" rel="noopener">pitifully simple modification</a>
+to an existing SSTV transmission program written for the Raspberry Pi. 
+I got myself an Amateur Extra license. I’ve done a few contacts with the club 
+radio, and went to interesting club events like our Field Day.
+I knew the next logical step and a really cool challenge to myself would be
+to create my own radio.</p>
+<p>My electronics skills aren’t terrible, but they aren’t amazing (yet!) either. I knew that
+RF engineering was cool ever since I started seriously learning electronics because
+of its intricacy and difficulty, but precisely because of that, it flew right over my head. 
+But I think I’ve gained just enough knowledge to tackle designing my very own radio, 
+a challenge that was seeded when I took a look at the fateful SSTV pictures.</p>
+<p>I know I’m not immediately ready to design all the parts and write all the necessary
+software to crank this radio design out. There are many, many things to learn 
+before that happens. Instead of doing it myself quietly, I want to share my 
+experience with the world. Hopefully this helps someone design their own radio, or
+perhaps this will be the Portal ARG for them. I also think that it will be really
+fun to look back on this series and see what my thoughts were. I hope this
+becomes an enjoyable read for those of you who are interested (including my future self!)</p>
+<h2 id="The-Game-Plan"><a href="#The-Game-Plan" class="headerlink" title="The Game Plan"></a>The Game Plan</h2><p>First of all, I have to mention that I am in a really weird spot to work on 
+personal projects. If you know me IRL, you might know what I’m talking about, but
+I currently have very limited access to my personal computer, and using various 
+software is cumbersome and awkward. I can’t reveal why right now, but I will 
+let you guys know when this state is lifted, which isn’t until May 2019. 
+Meanwhile, I plan to do the basic architecture, parts selection, necessary
+learning, and execution planning to get it working once my full capabilities are 
+restored. </p>
+<p>My EDA/CAD package of choice is KiCAD. KiCAD has been the package of choice
+for me ever since I designed circuits, and I’m very comfortable with it.
+I had a brief thought about using more industry standard EDA packages
+like Altium or Cadence so I can get more marketable skills, but I don’t want to 
+blow my budget before I even begin. Maybe I’ll learn when I save up some money.</p>
+<p>I’ll be using LTSpice for my circuit simulations. It’s free and I’m used to it.</p>
+<p>I like using Python for basically everything. I’ve used it for a long time and 
+I think it’s pretty darn good for what I expect to do, and it’s more accessible
+than for instance MATLAB. I don’t have a license for MATLAB so let’s hope I am not 
+forced to use it. </p>
+<p>As for test equipment, I have a Rigol DS1054Z scope, hacked of course to get
+that 100MHz bandwidth, and that’s all I have right now. I plan to get a cheap 
+DDS signal generator, a logic analyzer, and a power supply. </p>
+<h2 id="Design-Goals"><a href="#Design-Goals" class="headerlink" title="Design Goals"></a>Design Goals</h2><p>Here are some of the design goals I’d like to meet in my design.</p>
+<p>Since handheld VHF/UHF ham radios are quite common and extremely cheap because of
+their commodity status outside of ham radio, most dirt-poor hams like myself most 
+definitely have one. Unfortuately that’s all the equipment I have.</p>
+<p>Therefore, giving myself MF/HF capabilities, which I don’t have unless I use
+club equipment, would be really neat. </p>
+<blockquote><p>I want my radio to have 160m - 10m all-mode receive-transmit capabilities.</p>
+</blockquote>
+<p>There do exist homebrew radio designs that already fill this particular space. 
+The <a href="http://fivedash.com/index.php?main_page=product_info&amp;products_id=7" target="_blank" rel="noopener">SoftRock RXTX Ensemble</a>
+is one of those. This particular kit cannot switch bands without modifying the filters, though
+one could easily modify the design to allow the filters to be switched using
+RF switches.</p>
+<p>I initially intended to take the SoftRock design and improve upon it, but the 
+one problem I have with it is the amount of manual tweaking I’d have to do to
+get the filters just right. From my basic analysis, omitting these filters can
+harm the recieve spur performance. Not only that, the filters require manual
+winding of the magnetics. </p>
+<p>Handmade magnetics isn’t a huge problem, but I’m wondering if I can make a radio 
+that requires minimal manual labor <em>making</em> components. I realize that using 
+commodity parts instead of handmade parts may cost more or harm performance,
+but I am willing to accept that downside.</p>
+<blockquote><p>I want my radio to require minimal component tweaking and manual work.</p>
+</blockquote>
+<p>I have no problems soldering SMD. It seems like a lot of the ham radio kits
+avoid SMD components because of their difficulty. SMD components that are 
+reasonably hand solderable is fair game for my design. I’ll set the bar as the
+following: this includes TSSOP/QFP packages but excludes DFN/BGA packages. </p>
+<blockquote><p>SMD components are allowed, provided they are reasonably easy to hand-solder.</p>
+</blockquote>
+<p>Of course, the radio must conform to ham radio standards.</p>
+<blockquote><p>The radio should comply with ham radio regulations imposed by the FCC.</p>
+</blockquote>
+<p>These aren’t tall requirements, nor are they concrete; however if things go south and
+I can’t meet them, I want to mention that there is a possiblity that these 
+goals may be relaxed in the future.</p>
+<h2 id="Conclusions"><a href="#Conclusions" class="headerlink" title="Conclusions"></a>Conclusions</h2><p>Since this is my first devlog, I’ll just keep it nice and short. I hope this 
+series continues to motivate me to make this radio, and I hope all you readers
+accompany me in this journey.</p>
+
+                    
+                    <!-- Tags Bottom -->
+                    
+                        <div class="tags-container-bottom">
+                            <i class="fa fa-tag pr3 text-main-color"></i><a class="fw3 ph1 dib" href="/tags/dsp/">#dsp</a> <a class="fw3 ph1 dib" href="/tags/electronics/">#electronics</a> <a class="fw3 ph1 dib" href="/tags/ham/">#ham</a> <a class="fw3 ph1 dib" href="/tags/rf/">#rf</a> <a class="fw3 ph1 dib" href="/tags/devlog/">#devlog</a> <a class="fw3 ph1 dib" href="/tags/radio-devlog/">#radio_devlog</a>
+                        </div>
+                    
+
+                    <!-- Comments -->
+                    
+<div id="disqus_thread" class="mt5">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+
+
+
+                </div>
+                <div class="fl w-100 w-30-l center fw3 lh-copy pl4-ns tl black-50">
+                    
+                    <hr class="dn-l mw4 black-50 mt5" />
+                    
+                    <!-- Widget 1: About -->
+                    <div class="mt5 mt0-l">
+    <article class="dt db-l mw8 mw8-m mw5-ns center ml0-l bg-white mv3">
+        <div class="dn dtc-m db-l v-mid tc pr4 pr0-l" style="min-width: 6rem;">
+            <img src="http://tachyons.io/img/avatar_1.jpg" class="mb4-l br-100 h3 w3 h4-l w4-l dib" title="hatsunearu">
+        </div>
+        <div class="dtc db-l v-mid lh-copy measure center f6 black-50 tj">
+            I'm hatsu. I do electronics and software stuff.
+        </div>
+    </article>
+</div>
+
+                    <hr class="dn-l mw4 black-50 mt5" />
+                    
+                    <!-- Widget 2: Categories -->
+                    
+
+                    <!-- Widget 3: Recent Posts -->
+                    <div class="mt5 tc tl-l">
+    <h3>Recent Posts</h3>
+    
+        <p>
+            <a href="/2019/06/26/CIC-Decimator-Truncation/">CIC Decimator Truncation</a>
+        </p>
+    
+        <p>
+            <a href="/2018/09/16/Moved-to-Hexo/">Moved to Hexo</a>
+        </p>
+    
+        <p>
+            <a href="/2018/09/16/Radio-Devlog-1-Introductions/">Radio Devlog #1: Introductions</a>
+        </p>
+    
+        <p>
+            <a href="/2018/04/29/rust-offline/">Installing Rust Offline</a>
+        </p>
+    
+        <p>
+            <a href="/2018/04/08/missingfundamental/">The Missing Fundamental</a>
+        </p>
+    
+</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Footer -->
+<div class="bg-1 ph2 ph5-ns pv5">
+        <div class="mv8">
+            <div class="center tc">
+                
+                    <div class="dib mh3">
+                        <a class="f3 f2-ns white dim" href="https://github.com/hatsunearu" target="_blank">
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </div>
+                
+            </div>
+            <div class="f6 f5-ns center tc white pt5 fw3">
+                Created with Hexo // Anodyne theme by <a class="link dim white" href="http://www.codeblocq.com/">Jonathan Klughertz</a> // Icon by <a class="link dim white" href="https://www.flaticon.com/authors/eucalyp">Eucalyp</a>
+            </div>
+        </div>
+    </div>
+
+<!-- After Footer -->
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'hatsunearu';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="custom_mathjax_source">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+
+</html>
