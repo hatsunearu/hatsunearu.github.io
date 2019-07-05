@@ -171,13 +171,14 @@
 <p>Also, just as a passing note: the domain of \(k\) of \(h_j[k]\) is \([0, (RM-1)N+j-1]\) for the first case of the piecewise equation and is written in Appendix I near the end.</p>
 <h3 id="Truncation-Errors"><a href="#Truncation-Errors" class="headerlink" title="Truncation Errors"></a>Truncation Errors</h3><p>As mentioned earlier, the goal of the distributed truncation idea is to truncate the bits between each stage such that the resulting error accumulation is equivalent to the error you would get by truncating at the last stage.</p>
 <p>To do this, obtaining the error you would get by truncating the last stage would be useful.</p>
-<p>Hogenauer assumes that by truncating \(B_j\) bits (in the paper, at the \(j\)th position), you incur an error that has a probability distribution equal to the following, which is Equation (12) in the paper:</p>
+<p>Hogenauer assumes that by truncating \(B_j\) lowest significant bits (in the paper, at the \(j\)th position), you incur an error, with respect to the input LSB, that has a probability distribution equal to the following, which is Equation (12) in the paper:</p>
 <span>$$E_j=\left\{
   \begin{array}{@{}ll@{}}
     0, &amp; \text{if no truncation or rounding} \\
     {2}^{B_j}, &amp; \text{otherwise}
   \end{array}\right.$$</span><!-- Has MathJax -->
-<p>A uniform probability distribution. This also means that the variance of the error distribution is equivalent to the following, which is also Equation (13) in the paper:</p>
+<p>As an example in base-10, if you had an input value of \(12345\) and you wanted to truncate 2 digits (analogous to 2 bits in binary), the output value would be \(12300\). In this case, we lost \(45\) in this process. Furthermore, for all inputs values from \(12300\) to \(12399\), it would truncate down to \(12300\). This means that the maximum error bound is \(100\), or \({10}^{D_j}\) where \({D_j}\) represents the digits we discard (in our case, 2). If the input value is uniformly distributed between those two values, we can say that the error has a uniform probability distribution of \({10}^{D_j}\).</p>
+<p>A uniform probability distribution means that the variance of the error distribution is equivalent to the following, which is also Equation (13) in the paper:</p>
 <span>$$\sigma_j^2 = \frac{1} {12} E_j^2$$</span><!-- Has MathJax -->
 <p>This is useful for calculating the total error for the case where you do all the truncation at the end, but in the general case where you want to find out the error incurred by truncating an arbitrary amount of bits \(B_j\) at the \(j\)th stage, you have to take into account the fact that the data with the truncation error is “carried over” with the associated impulse response through each stage.</p>
 <h3 id="Variance-Error-Gain"><a href="#Variance-Error-Gain" class="headerlink" title="Variance Error Gain"></a>Variance Error Gain</h3><p>The “Variance Error Gain” is introduced, which is simply the multiplicative factor representing the increase of variance as the error from the \(j\)th stage propages through the subsequent stages.</p>
